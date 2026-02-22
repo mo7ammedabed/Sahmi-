@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}سهمي{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%230d6efd' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='22 7 13.5 15.5 8.5 10.5 2 17'%3E%3C/polyline%3E%3Cpolyline points='16 7 22 7 22 13'%3E%3C/polyline%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {%block extra_css%}{% endblock %}
+</head>
+
+<body>
+  <header id="headers" class="headers">
+    <div class="nav container" >
+         <div class="logo">
+            <a href="{%url 'home'%}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-7 w-7 text-white" ><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            </a>
+            <h3>سهمي</h3>
+          </div>  
+          <i class="fa-solid fa-bars" id="menu-icon"></i>
+
+        <div class="nav-links">
+            <a href="/" class="nav-link">الرئيسية</a>
+            <a href="{% url 'home' %}#about" class="nav-link">من نحن</a>
+
+            <a href="{% url 'projects:list' %}" class="nav-link">المشاريع</a>
+            <a href="#footer" class="nav-link">تواصل معنا</a>
+        </div>
+
+<div class="nav-btn">
+
+    {% if user.is_authenticated %}
+    
+        <button class="btn-2">
+    <a href="/accounts/profile/">الملف الشخصي</a>
+        </button>
+
+        <button class="btn-1">
+            <a href="{% url 'accounts:logout' %}?next=/">تسجيل خروج</a>
+        </button>
+
+    {% else %}
+    
+        <button class="btn-1">
+            <a href="{% url 'accounts:login' %}">تسجيل الدخول</a>
+        </button>
+
+        <button class="btn-2">
+            <a href="{% url 'accounts:register' %}">إنشاء حساب</a>
+        </button>
+
+    {% endif %}
+
+</div>
+
+    </div>
+</header>
+  <!-- Navbar -->
+  {% block content %}{% endblock %}
+
+ <footer class="footer" id="footer">
+      <div class="footer-container">
+        <!-- Logo + Description -->
+        <div class="footer-col footer-brand" id="foot">
+          <div class="brand">
+            <div class="brand-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                fill="none"
+                stroke="#007bff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                <polyline points="16 7 22 7 22 13"></polyline>
+              </svg>
+            </div>
+            <h3>سهمي</h3>
+          </div>
+
+          <p class="brand-desc">
+            منصة الاستثمار الجماعي الأولى في غزة، تربط المستثمرين بالمشاريع
+            الواعدة لبناء مستقبل أفضل.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-title">روابط سريعة</h4>
+          <ul>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="{% url 'projects:list' %}">المشاريع</a></li>
+            <li><a href="#">كيف يعمل</a></li>
+            <li><a href="#section">من نحن</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-col">
+          <h4 class="footer-title">قانوني</h4>
+          <ul>
+            <li><a href="#">شروط الاستخدام</a></li>
+            <li><a href="#">سياسة الخصوصية</a></li>
+            <li><a href="#">الأسئلة الشائعة</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4 class="footer-title">تواصل معنا</h4>
+          <ul class="contact-list">
+            <li><span class="contact-icon">📧</span> <span class="contact-text">mohammed8abed@gmail.com</span></li>
+            <li><span class="contact-icon">📞</span> <span class="contact-text">+972597676420</span></li>
+            <li><span class="contact-icon">📍</span> <span class="contact-text">غزة، فلسطين</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        © 2025 سهمي، جميع الحقوق محفوظة.
+        <br />
+        منصة استثمار متوافقة مع الشريعة الإسلامية.
+      </div>
+    </footer>
+
+  
+</body>
+
+</html> 
